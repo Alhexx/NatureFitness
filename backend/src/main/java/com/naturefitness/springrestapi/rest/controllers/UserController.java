@@ -63,7 +63,7 @@ public class UserController {
     }
 
 	@GetMapping("/{token}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public Map<String, Object> getInfo(@PathVariable String token) {
 		String login = jwtService.obterLoginUsuario(token);
 		UserDetails user = service.loadUserByUsername(login);

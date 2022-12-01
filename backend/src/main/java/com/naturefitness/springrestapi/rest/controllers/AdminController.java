@@ -39,7 +39,7 @@ public class AdminController {
 	}
 
 	@GetMapping
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public List<AdminCompleteDTO> findAll() {
 		return service.getAll()
 			.stream()
@@ -48,7 +48,7 @@ public class AdminController {
 	}
 
 	// @GetMapping
-	// @ResponseStatus(HttpStatus.FOUND)
+	// @ResponseStatus(HttpStatus.OK)
 	// public List<AdminDTO> findAll() {
 	// 	return service.getAll()
 	// 		.stream()
@@ -57,7 +57,7 @@ public class AdminController {
 	// }
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public AdminCompleteDTO findById(@PathVariable Integer id) {
 		return service.getById(id)
 			.map(Mapper::toCompleteDTO)

@@ -39,7 +39,7 @@ public class TrainerController {
 	}
 
 	@GetMapping
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public List<TrainerCompleteDTO> findAll() {
 		return service.getAll()
 			.stream()
@@ -48,7 +48,7 @@ public class TrainerController {
 	}
 
 	// @GetMapping
-	// @ResponseStatus(HttpStatus.FOUND)
+	// @ResponseStatus(HttpStatus.OK)
 	// public List<TrainerDTO> findAll() {
 	// 	return service.getAll()
 	// 		.stream()
@@ -57,7 +57,7 @@ public class TrainerController {
 	// }
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public TrainerCompleteDTO findById(@PathVariable Integer id) {
 		return service.getById(id)
 			.map(Mapper::toCompleteDTO)

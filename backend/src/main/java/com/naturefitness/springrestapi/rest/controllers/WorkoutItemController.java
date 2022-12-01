@@ -42,7 +42,7 @@ public class WorkoutItemController {
     }
 
     @GetMapping
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public List<WorkoutItemCompleteDTO> findAll() {
 		return service.getAll()
 			.stream()
@@ -51,7 +51,7 @@ public class WorkoutItemController {
 	}
 
     @GetMapping("{id}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public WorkoutItemCompleteDTO findById(@PathVariable Integer id) {
 		return service
             .getById(id)

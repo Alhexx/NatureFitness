@@ -38,7 +38,7 @@ public class ExerciseController {
 	}
 
 	@GetMapping
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public List<ExerciseDTO> findAll() {
 		return service.getAll()
 			.stream()
@@ -47,7 +47,7 @@ public class ExerciseController {
 	}
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public ExerciseDTO findById(@PathVariable Integer id) {
 		return service.getById(id)
 			.map(Mapper::toDTO)

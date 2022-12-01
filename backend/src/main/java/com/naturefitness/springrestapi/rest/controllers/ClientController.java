@@ -41,7 +41,7 @@ public class ClientController {
 	}
 
 	@GetMapping
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public List<ClientCompleteDTO> findAll() {
 		return service.getAll()
 			.stream()
@@ -50,7 +50,7 @@ public class ClientController {
 	}
 
 	// @GetMapping
-	// @ResponseStatus(HttpStatus.FOUND)
+	// @ResponseStatus(HttpStatus.OK)
 	// public List<ClientDTO> findAll() {
 	// 	return service.getAll()
 	// 		.stream()
@@ -59,7 +59,7 @@ public class ClientController {
 	// }
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	public ClientCompleteDTO findById(@PathVariable Integer id) {
 		return service.getById(id)
 			.map(Mapper::toCompleteDTO)
