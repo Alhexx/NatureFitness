@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Router from "next/router";
 import React, { useState } from "react";
-import { Container, Row, Col, Alert, Form } from "react-bootstrap";
+import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
 import api from "../services/api";
 import style from "../styles/login.module.scss";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { stringify } from "querystring";
 
 export default function register() {
   // muda de client para change password
-  const [role, setRole] = useState("client");
+  const [role, setRole] = useState("");
   // inputs do formulário
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -36,6 +36,7 @@ export default function register() {
       };
 
       if (password == passwordconf) {
+        console.log(role);
         setIsWaitingResponse(true);
         try {
           console.log(JSON.stringify(userData));
@@ -49,7 +50,7 @@ export default function register() {
         }
         setIsWaitingResponse(false);
       } else alert("Divergence on password!");
-    } else if (role == "trainers") {
+    } else if (role == "trainer") {
       const userData = {
         login: username,
         password: password,
@@ -125,31 +126,26 @@ export default function register() {
               onChange={onChangePasswordconf}
               required
             />
-            <div>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio1"
-                  value="client"
-                  onClick={(e) => setRole("client")}
-                  checked
-                />
-                <label className="form-check-label">Client</label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="trainer"
-                  onClick={(e) => setRole("trainer")}
-                />
-                <label className="form-check-label">Trainer</label>
-              </div>
-            </div>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                  <Form.Check
+                    type="radio"
+                    label="Trainer"
+                    onClick={(e) => setRole("trainer")}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                  <Form.Check
+                    type="radio"
+                    label="Client"
+                    onClick={(e) => setRole("client")}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
             <input
               className={style.submit}
               type="submit"

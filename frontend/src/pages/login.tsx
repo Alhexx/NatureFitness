@@ -40,7 +40,24 @@ export default function login() {
       sessionStorage.setItem("token", res.data.token);
       try {
         const resRole = await api.get("/users/" + res.data.token);
-        console.log(resRole);
+        switch (resRole.data.roles[0]) {
+          case "ADMIN": {
+            console.log("ADMINtome");
+            break;
+          }
+          case "TRAINER": {
+            console.log("TRAINER");
+            break;
+          }
+          case "CLIENT": {
+            console.log("CLIENTE");
+            break;
+          }
+          default: {
+            alert("No assigned role. Please contact administration!");
+            break;
+          }
+        }
       } catch (error) {
         console.log(JSON.stringify(error));
         alert("No assigned role. Please contact administration!");
