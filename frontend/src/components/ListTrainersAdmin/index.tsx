@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Alert, Form, Card } from "react-bootstrap";
 import { toast } from "react-toastify";
+import trainer from "../../pages/admin";
 import api from "../../services/api";
 
 export function ListTrainersAdmin() {
   const [isLoading, setIsLoading] = useState(false);
   const [trainers, setTrainers] = useState([]);
+
+  const handleClickDelete = async (value) => {
+    console.log("teste" + value.data);
+  };
 
   useEffect(() => {
     async function getWorkers() {
@@ -22,9 +27,6 @@ export function ListTrainersAdmin() {
         setIsLoading(false);
       } catch (err) {
         console.log(err);
-        err.response?.data?.errors
-          ? err.response.data.errors.map((error) => toast.error(error))
-          : toast.error(err.message);
         setIsLoading(false);
       }
     }
@@ -57,6 +59,26 @@ export function ListTrainersAdmin() {
                             <span>Personal Trainer</span>
                           </li>
                         </ul>
+                      </div>
+                      <div>
+                        <dl>
+                          <dt>
+                            <a>
+                              <button>Update</button>
+                            </a>
+                          </dt>
+                          <dt>
+                            <a>
+                              <button
+                                className="contrast outline"
+                                value={trainer.id}
+                                onClick={(value) => handleClickDelete(value)}
+                              >
+                                Deletar
+                              </button>
+                            </a>
+                          </dt>
+                        </dl>
                       </div>
                     </div>
                     <Card>
