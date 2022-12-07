@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Router from "next/router";
 import React, { useState } from "react";
-import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import api from "../services/api";
 import style from "../styles/login.module.scss";
-import Link from "next/link";
 import { backend_url } from "../../utils/conf";
-import { stringify } from "querystring";
 
 export default function register() {
   // muda de client para change password
@@ -75,9 +73,8 @@ export default function register() {
     }
   };
 
-  //mudando o valor das variáveis
-  const onChangeEmail = (event) => {
-    setEmail(event.target.value);
+  const onChangeRole = (e) => {
+    setRole(e.target.value);
   };
   const onChangeUsername = (event) => {
     setUsername(event.target.value);
@@ -128,24 +125,23 @@ export default function register() {
             />
             <Row>
               <Col>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Check
-                    type="radio"
-                    label="Trainer"
-                    onClick={(e) => setRole("trainer")}
-                  />
-                </Form.Group>
+                <Form.Check
+                  type="radio"
+                  label="Trainer"
+                  value={"trainer"}
+                  onChange={onChangeRole}
+                />
               </Col>
               <Col>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Check
-                    type="radio"
-                    label="Client"
-                    onClick={(e) => setRole("client")}
-                  />
-                </Form.Group>
+                <Form.Check
+                  type="radio"
+                  label="Client"
+                  value={"client"}
+                  onChange={onChangeRole}
+                />
               </Col>
             </Row>
+            {console.log(role)}
             <input
               className={style.submit}
               type="submit"

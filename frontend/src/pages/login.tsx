@@ -3,23 +3,12 @@ import Router from "next/router";
 import React, { useState } from "react";
 import api from "../services/api";
 import style from "../styles/login.module.scss";
-import Link from "next/link";
-import { backend_url } from "../../utils/conf";
-import { stringify } from "querystring";
-import { FaUser, FaSignInAlt, FaLock } from "react-icons/fa";
 
-import { Form, Container, InputGroup, Row, Col, Button } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 
 export default function login() {
-  // muda de client para change password
-  const [page, setPage] = useState("client");
-  // inputs do formulário
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordconf, setPasswordconf] = useState("");
   const [isWaitingResponse, setIsWaitingResponse] = useState(false);
 
   //envio das informações para o backend
