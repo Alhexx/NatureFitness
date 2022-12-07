@@ -22,9 +22,6 @@ export function ListClients() {
         setIsLoading(false);
       } catch (err) {
         console.log(err);
-        err.response?.data?.errors
-          ? err.response.data.errors.map((error) => toast.error(error))
-          : toast.error(err.message);
         setIsLoading(false);
       }
     }
@@ -63,7 +60,7 @@ export function ListClients() {
                       </div>
                     </div>
                     <Card>
-                      <Card.Title>Clientes:</Card.Title>
+                      <Card.Title>Trainers:</Card.Title>
                       <Card.Body>
                         {client.trainers.map((trainer, i) => (
                           <>

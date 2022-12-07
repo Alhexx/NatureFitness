@@ -42,7 +42,7 @@ export default function login() {
         const resRole = await api.get("/users/" + res.data.token);
         switch (resRole.data.roles[0]) {
           case "ADMIN": {
-            console.log("ADMINtome");
+            Router.push("/admin");
             break;
           }
           case "TRAINER": {
@@ -50,7 +50,7 @@ export default function login() {
             break;
           }
           case "CLIENT": {
-            console.log("CLIENTE");
+            Router.push("/client");
             break;
           }
           default: {
