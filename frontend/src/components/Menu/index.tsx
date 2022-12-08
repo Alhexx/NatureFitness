@@ -36,7 +36,16 @@ export function Menu() {
       <Container>
         <Navbar.Brand href="/">Nature Fitness</Navbar.Brand>
         {isLoading ? (
-          <></>
+          <>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="me-auto"></Nav>
+              <Nav>
+                <Nav.Link href="/register">register</Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </>
         ) : (
           <>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -71,7 +80,4 @@ export function Menu() {
       </Container>
     </Navbar>
   );
-}
-function setIsLoading(arg0: boolean) {
-  throw new Error("Function not implemented.");
 }
