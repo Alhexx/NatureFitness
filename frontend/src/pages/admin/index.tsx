@@ -5,6 +5,7 @@ import Router from "next/router";
 import { ListTrainersAdmin } from "../../components/ListTrainersAdmin";
 import { ListClientsAdmin } from "../../components/ListClientsAdmin";
 import { FaPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function trainer() {
   const [modalClient, setModalClient] = useState(false);
@@ -53,7 +54,7 @@ export default function trainer() {
     } catch (error) {
       console.log(JSON.stringify(error));
       setIsWaitingResponse(false);
-      alert("Patch Error");
+      toast.error("Patch Error");
     }
     setIsWaitingResponse(false);
   };
@@ -83,7 +84,7 @@ export default function trainer() {
     } catch (error) {
       console.log(JSON.stringify(error));
       setIsWaitingResponse(false);
-      alert("Patch Error");
+      toast.error("Patch Error");
     }
     setIsWaitingResponse(false);
   };

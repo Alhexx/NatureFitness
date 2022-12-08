@@ -22,6 +22,7 @@ export function ListClients() {
         setIsLoading(false);
       } catch (err) {
         console.log(err);
+        toast.error("Error!");
         setIsLoading(false);
       }
     }

@@ -43,7 +43,7 @@ export function ListClientsAdmin() {
     } catch (error) {
       console.log(JSON.stringify(error));
       setIsWaitingResponse(false);
-      alert("Patch Error");
+      toast.error("Patch Error");
     }
     setIsWaitingResponse(false);
   };
@@ -64,7 +64,7 @@ export function ListClientsAdmin() {
       window.location.reload(false);
     } catch (err) {
       console.log(err);
-      alert("Couldn't Delete!");
+      toast.error("Couldn't Delete!");
       setIsLoading(false);
     }
   };

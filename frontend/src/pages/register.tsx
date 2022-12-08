@@ -5,6 +5,7 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import api from "../services/api";
 import style from "../styles/register.module.scss";
 import { backend_url } from "../../utils/conf";
+import { toast } from "react-toastify";
 
 export default function register() {
   // muda de client para change password
@@ -51,10 +52,10 @@ export default function register() {
       } catch (error) {
         console.log(JSON.stringify(error));
         setIsWaitingResponse(false);
-        alert("Cadastration error!");
+        toast.error("Cadastration error!");
       }
       setIsWaitingResponse(false);
-    } else alert("Divergence on password!");
+    } else toast.error("Divergence on password!");
   };
 
   const handleSubmitTrainer = async (event) => {
@@ -83,10 +84,10 @@ export default function register() {
       } catch (error) {
         console.log(JSON.stringify(error));
         setIsWaitingResponse(false);
-        alert("Cadastration error!");
+        toast.error("Cadastration error!");
       }
       setIsWaitingResponse(false);
-    } else alert("Divergence on password!");
+    } else toast.error("Divergence on password!");
   };
 
   return (

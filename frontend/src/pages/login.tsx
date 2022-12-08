@@ -5,6 +5,7 @@ import api from "../services/api";
 import style from "../styles/login.module.scss";
 
 import { Form, Container } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function login() {
   const [username, setUsername] = useState("");
@@ -43,18 +44,18 @@ export default function login() {
             break;
           }
           default: {
-            alert("No assigned role. Please contact administration!");
+            toast.error("No assigned role. Please contact administration!");
             break;
           }
         }
       } catch (error) {
         console.log(JSON.stringify(error));
-        alert("No assigned role. Please contact administration!");
+        toast.error("No assigned role. Please contact administration!");
       }
     } catch (error) {
       console.log(JSON.stringify(error));
+      toast.error("Login Error!");
       setIsWaitingResponse(false);
-      alert("Login error!");
     }
     setIsWaitingResponse(false);
   };
