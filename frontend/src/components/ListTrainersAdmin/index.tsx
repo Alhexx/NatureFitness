@@ -44,7 +44,7 @@ export function ListTrainersAdmin() {
     } catch (error) {
       console.log(JSON.stringify(error));
       setIsWaitingResponse(false);
-      toast.error("Patch Error");
+      alert("Patch Error");
     }
     setIsWaitingResponse(false);
   };
@@ -59,7 +59,7 @@ export function ListTrainersAdmin() {
       window.location.reload(false);
     } catch (err) {
       console.log(err);
-      toast.error("Couldn't Delete!");
+      alert("Couldn't Delete!");
       setIsLoading(false);
     }
   };
