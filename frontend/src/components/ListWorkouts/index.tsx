@@ -71,7 +71,9 @@ export function ListWorkouts() {
                                     )}
                                   </li>
                                   <li>Exercise: {item.exercise.name}</li>
-                                  <li>Exercise: {item.exercise.description}</li>
+                                  <li>
+                                    Description: {item.exercise.description}
+                                  </li>
                                 </ul>
                               </Col>
                             </Row>
