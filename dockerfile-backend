@@ -1,0 +1,19 @@
+FROM openjdk:8-jdk-alpine
+RUN mkdir /root/backend && mkdir /root/.m2
+COPY ./backend /root/backend
+WORKDIR /root/backend
+ENV TZ=America/Fortaleza
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN mvn clean package
+RUN mv target/*.jar target/app.jar
+ENTRYPOINT ["java","-jar","target/app.jar"]
+
+
+# FROM openjdk:8-jdk-alpine
+# RUN addgroup -S spring && adduser -S spring -G spring
+# USER spring:spring
+# ARG DEPENDENCY=target/dependency
+# COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+# COPY ${DEPENDENCY}/META-INF /app/META-INF
+# COPY ${DEPENDENCY}/BOOT-INF/classes /app
+# ENTRYPOINT ["java","-cp","app:app/lib/*","hello.Application"]

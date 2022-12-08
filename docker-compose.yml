@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: "naturefitness"
+      MYSQL_USER: "lorax"
+      MYSQL_PASSWORD: "lorax"
+      MYSQL_ROOT_PASSWORD: "lorax"
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile-backend
+    image: spring-boot-container:backend
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysqldb
+
+  frontend:
+    container_name: react-frontend
+    privileged: true
+    build:
+      context: .
+      dockerfile: dockerfile-frontend
+    image: react:frontend
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      TZ: "America/Fortaleza"
