@@ -3,6 +3,8 @@ package com.naturefitness.springrestapi.rest.mappers;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.List;
+import java.util.LinkedList;
 
 import org.hibernate.loader.ColumnEntityAliases;
 
@@ -10,6 +12,7 @@ import com.naturefitness.springrestapi.model.Admin;
 import com.naturefitness.springrestapi.model.Client;
 import com.naturefitness.springrestapi.model.Exercise;
 import com.naturefitness.springrestapi.model.PersonalData;
+import com.naturefitness.springrestapi.model.SpringUser;
 import com.naturefitness.springrestapi.model.Trainer;
 import com.naturefitness.springrestapi.model.Workout;
 import com.naturefitness.springrestapi.model.WorkoutItem;
@@ -25,6 +28,8 @@ import com.naturefitness.springrestapi.rest.dto.PersonalDataDTO;
 import com.naturefitness.springrestapi.rest.dto.TrainerCompleteDTO;
 import com.naturefitness.springrestapi.rest.dto.TrainerCreationDTO;
 import com.naturefitness.springrestapi.rest.dto.TrainerDTO;
+import com.naturefitness.springrestapi.rest.dto.UserCreationDTO;
+import com.naturefitness.springrestapi.rest.dto.UserDTO;
 import com.naturefitness.springrestapi.rest.dto.WorkoutCompleteDTO;
 import com.naturefitness.springrestapi.rest.dto.WorkoutCreationDTO;
 import com.naturefitness.springrestapi.rest.dto.WorkoutDTO;
@@ -192,7 +197,7 @@ public class Mapper {
 			)
 			.workouts(c.getWorkouts()
 				.stream()
-				.map(w -> toDTO(w))
+				.map(w -> toCompleteDTO(w))
 				.collect(Collectors.toList())
 			)
 			.build();
@@ -259,6 +264,48 @@ public class Mapper {
 		return AdminCompleteDTO.builder()
 			.id(a.getId())
 			.data(Mapper.toDTO(a.getData()))
+			.build();
+	}
+
+	/* User */
+
+	public static SpringUser toUser(UserCreationDTO dto) {
+		return SpringUser.builder()
+			.login(dto.getLogin())
+			.password(dto.getPassword())
+			.client(dto.getClient())
+			.trainer(dto.getTrainer())
+			.admin(dto.getAdmin())
+			.build();
+	}
+
+	public static Client toClient(UserCreationDTO dto) {
+		return Client.builder()
+			.data(Mapper.toPersonalData(dto.getData()))
+			.build();
+	}
+
+	public static Trainer toTrainer(UserCreationDTO dto) {
+		return Trainer.builder()
+			.data(Mapper.toPersonalData(dto.getData()))
+			.build();
+	}
+
+	public static Admin toAdmin(UserCreationDTO dto) {
+		return Admin.builder()
+			.data(Mapper.toPersonalData(dto.getData()))
+			.build();
+	}
+
+	public static UserDTO toDTO(SpringUser u) {
+		List<String> roles = new LinkedList<>();
+		if (u.getClient()) roles.add("CLIENT");
+		if (u.getTrainer()) roles.add("TRAINER");
+		if (u.getAdmin()) roles.add("ADMIN");
+		return UserDTO.builder()
+			.login(u.getLogin())
+			.roles(roles)
+			.roleEntity(u.getRoleEntity())
 			.build();
 	}
 

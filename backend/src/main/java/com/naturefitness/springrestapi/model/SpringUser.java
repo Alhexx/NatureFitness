@@ -44,6 +44,9 @@ public class SpringUser {
     @Column
     private Boolean admin;
 
+    @Column
+    private Integer roleEntity;
+
 
 }
 

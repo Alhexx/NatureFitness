@@ -12,6 +12,6 @@ public class ClientCompleteDTO {
 	private Integer id;
 	private PersonalDataDTO data;
 	private List<TrainerDTO> trainers;
-	private List<WorkoutDTO> workouts;
+	private List<WorkoutCompleteDTO> workouts;
 
 }
